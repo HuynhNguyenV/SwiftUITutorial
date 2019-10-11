@@ -12,42 +12,41 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 20) {
             Text("HStack").font(.largeTitle)
-            Text("Vertical Alignment")
+            Text("Layout Priority")
                 .font(.title)
                 .foregroundColor(.gray)
-            Text("Be default, views within an HStack are vertically aligned in the center.")
+            Text("Use the layout priority modifier to give priority to the space a view needs to show its content.")
                 .frame(maxWidth: .infinity)
                 .padding().layoutPriority(1)
                 .background(Color.blue)
                 .foregroundColor(.white)
                 .font(.title)
             
+            Text(".layoutPriority(1) is set on 'Brings Balance'").font(.subheadline)
+            
             HStack {
-                Rectangle().foregroundColor(Color.blue).frame(width: 25)
-                Text("Leading")
-                Spacer()
-                Text("Center")
-                Spacer()
-                Text("Trailing").padding(.trailing)
-            }.border(Color.blue)
+                Text("SwiftUI").font(.largeTitle).lineLimit(1)
+                Image(systemName: "pencil.circle.fill")
+                    .resizable() // fill size
+                    .frame(width: 80, height: 80)
+                Text("Brings Balance")
+                    .font(.largeTitle)
+                    .layoutPriority(1)
+            }.padding(.horizontal)
             
-            HStack(alignment: .top) {
-                Rectangle().foregroundColor(Color.blue).frame(width: 25)
-                Text("Leading")
-                Spacer()
-                Text("Center")
-                Spacer()
-                Text("Trailing").padding(.trailing)
-            }.border(Color.blue)
+            HStack {
+                Text("SwiftUI")
+                    .font(.largeTitle)
+                    .layoutPriority(1)
+                Image(systemName: "pencil.circle.fill")
+                    .resizable() // fill size
+                    .frame(width: 80, height: 80)
+                Text("Brings Balance")
+                    .font(.largeTitle)
+                    .lineLimit(1)
+            }.padding(.horizontal)
             
-            HStack(alignment: .bottom) {
-                Rectangle().foregroundColor(Color.blue).frame(width: 25)
-                Text("Leading")
-                Spacer()
-                Text("Center")
-                Spacer()
-                Text("Trailing").padding(.trailing)
-            }.border(Color.blue)
+            Text(".layoutPriority(1) is set on 'SwiftUI'").font(.subheadline)
         }
     }
 }
