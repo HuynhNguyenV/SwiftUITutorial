@@ -10,22 +10,31 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack {
-            Color.gray
-                .edgesIgnoringSafeArea(.all)
+        VStack(spacing: 20) {
+            Text("ZStack").font(.largeTitle)
             
-            VStack(spacing: 20) {
-                Text("ZStack").font(.largeTitle)
-                Text("Edges Ignoring Safe Area").foregroundColor(.white)
+            Text("Layering & Aligning").foregroundColor(.gray)
+            
+            Text("ZStacks are great for layering views. For example, putting text on top of an image. You can align all the subviews within the ZStack.")
+                .frame(maxWidth: .infinity).padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
                 
-                Text("Having the ZStack edges ignoring the safe areas might be a mistake if you don't want other layers' edges to also ignore the safe areas. You notice that the top Text view is completely under the notch.")
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.yellow)
-                Spacer()
+            ZStack(alignment: .bottomTrailing) {
+                Image("catalina").resizable().frame(width: 390, height: 200)
+                Rectangle()
+                    .foregroundColor(.white).opacity(0.5)
+                    .frame(width: 390, height: 50)
+                Text("Catalina").padding(8)
             }
-            .font(.title)
-        }
+            ZStack(alignment: .topLeading) {
+                Image("catalina").resizable().frame(width: 390, height: 200)
+                Rectangle()
+                    .foregroundColor(.white).opacity(0.5)
+                    .frame(width: 390, height: 50)
+                Text("Catalina").padding(8)
+            }
+        }.font(.title)
     }
 }
 
