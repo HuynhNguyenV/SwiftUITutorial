@@ -10,34 +10,44 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 40) {
+        VStack(spacing: 20) {
             Text("HStack").font(.largeTitle)
-            Text("Spacing")
+            Text("Vertical Alignment")
                 .font(.title)
                 .foregroundColor(.gray)
-            Text("The HStack initializer allows you to set the spacing between all the views inside the HStack.")
+            Text("Be default, views within an HStack are vertically aligned in the center.")
                 .frame(maxWidth: .infinity)
                 .padding().layoutPriority(1)
                 .background(Color.blue)
                 .foregroundColor(.white)
                 .font(.title)
             
-            Text("Default Spacing").font(.title)
-            
             HStack {
-                Image(systemName: "1.circle")
-                Image(systemName: "2.circle")
-                Image(systemName: "3.circle")
-            }.font(.largeTitle)
+                Rectangle().foregroundColor(Color.blue).frame(width: 25)
+                Text("Leading")
+                Spacer()
+                Text("Center")
+                Spacer()
+                Text("Trailing").padding(.trailing)
+            }.border(Color.blue)
             
-            Text("Spacing: 100").font(.title)
+            HStack(alignment: .top) {
+                Rectangle().foregroundColor(Color.blue).frame(width: 25)
+                Text("Leading")
+                Spacer()
+                Text("Center")
+                Spacer()
+                Text("Trailing").padding(.trailing)
+            }.border(Color.blue)
             
-            HStack(spacing: 100) {
-                Image(systemName: "1.circle")
-                Image(systemName: "2.circle")
-                Image(systemName: "3.circle")
-            }.font(.largeTitle)
-            
+            HStack(alignment: .bottom) {
+                Rectangle().foregroundColor(Color.blue).frame(width: 25)
+                Text("Leading")
+                Spacer()
+                Text("Center")
+                Spacer()
+                Text("Trailing").padding(.trailing)
+            }.border(Color.blue)
         }
     }
 }
