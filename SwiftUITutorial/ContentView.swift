@@ -10,41 +10,33 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 10) {
-            Text("Spacer").font(.largeTitle)
-            Text("Minimum Length")
+        VStack(spacing: 20) {
+            Text("GeometryReader").font(.largeTitle)
+            Text("Introduction")
                 .font(.title)
                 .foregroundColor(.gray)
-            
-            Text("You can set a minimum space to exist between views using the minLength modifier on the Spacer.")
+            Text("GeometryReader is a container view that pushes out to fill up all available space. You use it to help with positioning items within it.")
                 .frame(maxWidth: .infinity).padding()
-                .font(.title)
-                .background(Color.blue)
-                .foregroundColor(.white)
             
-            Text("No minLength set (system default is used)").bold()
-            
-            HStack {
-                Image("catalina").resizable().frame(width: 250, height: 100)
-                Spacer()
-                Text("This is catalina").lineLimit(1)
-            }.padding()
-            
-            Text("minLength = 0").bold()
-            
-            HStack {
-                Image("catalina").resizable().frame(width: 250, height: 100)
-                Spacer(minLength: 0)
-                Text("This is catalina").lineLimit(1)
-            }.padding()
-            
-            Text("minLength = 40").bold()
-            HStack {
-                Image("catalina").resizable().frame(width: 250, height: 100)
-                Spacer(minLength: 40)
-                Text("This is catalina").lineLimit(1)
-            }.padding()
+            GeometryReader { geometry in
+                VStack(spacing: 10) {
+                    Text("Width: \(geometry.frame(in: CoordinateSpace.local).origin.x)")
+                    Text("Height: \(geometry.frame(in: CoordinateSpace.local).origin.y)")
+                }.foregroundColor(.white)
+            }
+            .background(Color.pink)
+
+            GeometryReader { geometry in
+                VStack(spacing: 10) {
+                    Text("Width: \(geometry.frame(in: .global).origin.x)")
+                    Text("Height: \(geometry.frame(in: .global).origin.y)")
+                }.foregroundColor(.white)
+            }
+            .background(Color.pink)
+
         }
+        .font(.title)
+        .padding(.horizontal)
     }
 }
 
