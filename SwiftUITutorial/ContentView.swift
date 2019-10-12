@@ -10,64 +10,41 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 10) {
             Text("Spacer").font(.largeTitle)
-            Text("Evenly Spaced").foregroundColor(.gray)
+            Text("Minimum Length")
+                .font(.title)
+                .foregroundColor(.gray)
             
-            Text("Use Spacer to envenly space views horizontally so they look good on any device.")
+            Text("You can set a minimum space to exist between views using the minLength modifier on the Spacer.")
                 .frame(maxWidth: .infinity).padding()
+                .font(.title)
                 .background(Color.blue)
                 .foregroundColor(.white)
             
-            Text("Before")
-                .frame(maxWidth: .infinity).padding()
-                .background(Color.yellow)
+            Text("No minLength set (system default is used)").bold()
             
             HStack {
-                VStack (alignment: .leading) {
-                    Text("Names").underline()
-                    Text("Chase")
-                    Text("Rodrigo")
-                    Text("Mark")
-                    Text("Evans")
-                }.layoutPriority(1)
-                VStack (alignment: .leading) {
-                    Text("Color").underline()
-                    Text("Red")
-                    Text("Orange")
-                    Text("Green")
-                    Text("Blue")
-                }.layoutPriority(1)
-            }
+                Image("catalina").resizable().frame(width: 250, height: 100)
+                Spacer()
+                Text("This is catalina").lineLimit(1)
+            }.padding()
             
-            Text("After")
-            .frame(maxWidth: .infinity).padding()
-            .background(Color.green)
+            Text("minLength = 0").bold()
             
             HStack {
-                Spacer()
-                VStack (alignment: .leading) {
-                    Text("Names").underline()
-                    Text("Chase")
-                    Text("Rodrigo")
-                    Text("Mark")
-                    Text("Evans")
-                }.layoutPriority(1)
-                
-                Spacer()
-                
-                VStack (alignment: .leading) {
-                    Text("Color").underline()
-                    Text("Red")
-                    Text("Orange")
-                    Text("Green")
-                    Text("Blue")
-                }.layoutPriority(1)
-                
-                Spacer()
-            }
+                Image("catalina").resizable().frame(width: 250, height: 100)
+                Spacer(minLength: 0)
+                Text("This is catalina").lineLimit(1)
+            }.padding()
             
-        }.font(.title)
+            Text("minLength = 40").bold()
+            HStack {
+                Image("catalina").resizable().frame(width: 250, height: 100)
+                Spacer(minLength: 40)
+                Text("This is catalina").lineLimit(1)
+            }.padding()
+        }
     }
 }
 
