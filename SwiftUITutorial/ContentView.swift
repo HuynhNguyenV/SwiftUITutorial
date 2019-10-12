@@ -11,29 +11,62 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack(spacing: 20) {
-            Text("ZStack").font(.largeTitle)
+            Text("Spacer").font(.largeTitle)
+            Text("Evenly Spaced").foregroundColor(.gray)
             
-            Text("Layering & Aligning").foregroundColor(.gray)
-            
-            Text("ZStacks are great for layering views. For example, putting text on top of an image. You can align all the subviews within the ZStack.")
+            Text("Use Spacer to envenly space views horizontally so they look good on any device.")
                 .frame(maxWidth: .infinity).padding()
                 .background(Color.blue)
                 .foregroundColor(.white)
+            
+            Text("Before")
+                .frame(maxWidth: .infinity).padding()
+                .background(Color.yellow)
+            
+            HStack {
+                VStack (alignment: .leading) {
+                    Text("Names").underline()
+                    Text("Chase")
+                    Text("Rodrigo")
+                    Text("Mark")
+                    Text("Evans")
+                }.layoutPriority(1)
+                VStack (alignment: .leading) {
+                    Text("Color").underline()
+                    Text("Red")
+                    Text("Orange")
+                    Text("Green")
+                    Text("Blue")
+                }.layoutPriority(1)
+            }
+            
+            Text("After")
+            .frame(maxWidth: .infinity).padding()
+            .background(Color.green)
+            
+            HStack {
+                Spacer()
+                VStack (alignment: .leading) {
+                    Text("Names").underline()
+                    Text("Chase")
+                    Text("Rodrigo")
+                    Text("Mark")
+                    Text("Evans")
+                }.layoutPriority(1)
                 
-            ZStack(alignment: .bottomTrailing) {
-                Image("catalina").resizable().frame(width: 390, height: 200)
-                Rectangle()
-                    .foregroundColor(.white).opacity(0.5)
-                    .frame(width: 390, height: 50)
-                Text("Catalina").padding(8)
+                Spacer()
+                
+                VStack (alignment: .leading) {
+                    Text("Color").underline()
+                    Text("Red")
+                    Text("Orange")
+                    Text("Green")
+                    Text("Blue")
+                }.layoutPriority(1)
+                
+                Spacer()
             }
-            ZStack(alignment: .topLeading) {
-                Image("catalina").resizable().frame(width: 390, height: 200)
-                Rectangle()
-                    .foregroundColor(.white).opacity(0.5)
-                    .frame(width: 390, height: 50)
-                Text("Catalina").padding(8)
-            }
+            
         }.font(.title)
     }
 }
