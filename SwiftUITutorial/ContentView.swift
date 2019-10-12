@@ -11,26 +11,33 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack(spacing: 10) {
-            Text("GeometryReader").font(.largeTitle)
-            Text("Introduction")
-                .font(.title)
-                .foregroundColor(.gray)
-            Text("GeometryReader is a container view that pushes out to fill up all available space.")
-                .frame(maxWidth: .infinity).padding()
-                .layoutPriority(1)
+            Text("Button").font(.largeTitle)
             
-            GeometryReader { geometry in
-                VStack {
-                    Text("geometry: \(geometry.safeAreaInsets.leading)")
-                    Text("geometry: \(geometry.safeAreaInsets.trailing)")
-                    Text("geometry: \(geometry.safeAreaInsets.top)")
-                    Text("geometry: \(geometry.safeAreaInsets.bottom)")
-                }.foregroundColor(.white)
+            Button("Default Button Style") {
+                
             }
-            .background(Color.pink)
-        }
-        .font(.title)
-        .padding(.horizontal)
+            Divider()
+            Button(action: {
+                print("Headline Font")
+            }) {
+                Text("Headline Font").font(.headline)
+            }
+            Divider()
+            
+            Button(action: {
+                print("Foreground Color")
+            }){
+                Text("Foreground Color").foregroundColor(.red)
+            }
+            Divider()
+            Button(action: {
+                print("Thin Font Weight")
+            }) {
+                Text("Thin Font Weight").fontWeight(.thin)
+            }
+            
+            
+        }.font(.title)
     }
 }
 
