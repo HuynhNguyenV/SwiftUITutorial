@@ -10,30 +10,24 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 10) {
             Text("GeometryReader").font(.largeTitle)
             Text("Introduction")
                 .font(.title)
                 .foregroundColor(.gray)
-            Text("GeometryReader is a container view that pushes out to fill up all available space. You use it to help with positioning items within it.")
+            Text("GeometryReader is a container view that pushes out to fill up all available space.")
                 .frame(maxWidth: .infinity).padding()
+                .layoutPriority(1)
             
             GeometryReader { geometry in
-                VStack(spacing: 10) {
-                    Text("Width: \(geometry.frame(in: CoordinateSpace.local).origin.x)")
-                    Text("Height: \(geometry.frame(in: CoordinateSpace.local).origin.y)")
+                VStack {
+                    Text("geometry: \(geometry.safeAreaInsets.leading)")
+                    Text("geometry: \(geometry.safeAreaInsets.trailing)")
+                    Text("geometry: \(geometry.safeAreaInsets.top)")
+                    Text("geometry: \(geometry.safeAreaInsets.bottom)")
                 }.foregroundColor(.white)
             }
             .background(Color.pink)
-
-            GeometryReader { geometry in
-                VStack(spacing: 10) {
-                    Text("Width: \(geometry.frame(in: .global).origin.x)")
-                    Text("Height: \(geometry.frame(in: .global).origin.y)")
-                }.foregroundColor(.white)
-            }
-            .background(Color.pink)
-
         }
         .font(.title)
         .padding(.horizontal)
