@@ -9,38 +9,34 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var nextFullMoonDate = Date()
+    @State private var justTime = Date()
+    @State private var theDateAndTime = Date()
     
     var body: some View {
-        VStack(spacing: 20){
+        VStack(spacing: 10){
             Text("DatePicker").font(.largeTitle)
-            Text("Introduction")
+            Text("Displayed Components")
                 .font(.title)
                 .foregroundColor(.gray)
             
-            Text("Binf a date variable to get and set the date in the date picker")
+            Text("Show date and time parts with displayedComponents.")
                 .frame(maxWidth: .infinity).padding()
                 .background(Color.yellow)
                 .font(.title)
             
-            Text("Next Full Moon").font(.largeTitle)
+            DatePicker("", selection: $justTime, displayedComponents: .hourAndMinute)
+            .offset(x: -50, y: 0)
             
-            HStack {
-                Spacer(minLength: 50)
-                Image(systemName: "moon.circle")
-                Spacer()
-                Circle().frame(height: 60.0)
-                Spacer()
-                Image(systemName: "moon.circle.fill")
-                Spacer(minLength: 50)
-            }.font(.largeTitle)
-                .foregroundColor(.yellow)
+            Text("Combine date and time with an array.")
+                .frame(maxWidth: .infinity).padding()
+                .background(Color.yellow)
+                .font(.title)
             
-            Text("Date of next full moom")
+            DatePicker("", selection: $theDateAndTime, displayedComponents: [.date, .hourAndMinute])
+                .offset(x: -50, y: 0)
             
-            DatePicker("", selection: $nextFullMoonDate, displayedComponents: .date)
-            Spacer()
-        }
+            
+        }.edgesIgnoringSafeArea(.bottom)
         
     }
 }
