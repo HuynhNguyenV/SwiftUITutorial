@@ -9,35 +9,26 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var justTime = Date()
-    @State private var theDateAndTime = Date()
+    @State private var dateInForm = Date()
     
     var body: some View {
-        VStack(spacing: 10){
-            Text("DatePicker").font(.largeTitle)
-            Text("Displayed Components")
-                .font(.title)
-                .foregroundColor(.gray)
-            
-            Text("Show date and time parts with displayedComponents.")
-                .frame(maxWidth: .infinity).padding()
-                .background(Color.yellow)
-                .font(.title)
-            
-            DatePicker("", selection: $justTime, displayedComponents: .hourAndMinute)
-            .offset(x: -50, y: 0)
-            
-            Text("Combine date and time with an array.")
-                .frame(maxWidth: .infinity).padding()
-                .background(Color.yellow)
-                .font(.title)
-            
-            DatePicker("", selection: $theDateAndTime, displayedComponents: [.date, .hourAndMinute])
-                .offset(x: -50, y: 0)
-            
-            
-        }.edgesIgnoringSafeArea(.bottom)
-        
+        Form {
+            Section(header: Text("DatePicker").font(.largeTitle).padding()) {
+                Text("Used In Forms")
+                    .font(.title)
+                    .foregroundColor(.gray)
+                    .padding()
+                
+                Text("The date picker looks differently when used in a form. The first parameter called 'title' is used when in forms and lists.")
+                    .frame(maxWidth: .infinity)
+                    .padding().listRowBackground(Color.yellow)
+                    .font(.title)
+                
+                DatePicker("DatePicker Collapsed (Default)", selection: $dateInForm, displayedComponents: .date)
+                DatePicker("DatePicker Collapsed (Selected)", selection: $dateInForm, displayedComponents: .date)
+                
+            }
+        }
     }
 }
 
