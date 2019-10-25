@@ -12,18 +12,26 @@ struct ContentView: View {
 
     var body: some View {
         Form {
-            Section(header: Text("Seciton Header Text")) {
+            Section(header: Text("Seciton Header Text").foregroundColor(.gray).font(.title).bold()) {
                 Text("You Can put any content in here")
-                Text("The cells with grow to fit the content")
+                Color.pink
+                Text("You Can put any content in here")
+                Color.pink.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             }
             
             Section(header: SectionTextAndImage(name: "People", image: "person.2.square.stack.fill")) {
-                Text("There are build-in margins thar are difficult to get around. Take s look at the color below so you can see where the margins are:")
+                Text("There are build-in margins thar")
             }
             
-            Section(header: Text(""), footer: Text("Total: $5000.00").bold()) {
-                Text("Pretty much what you see here is what you get.")
+            Section(header: Text("Row Inset Uses").font(.title)) {
+                Text("Other possible uses could be for indenting")
+                Text("Indent Level 1").listRowInsets(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 0))
+                Text("Indent Level 2").listRowInsets(EdgeInsets(top: 0, leading: 80, bottom: 0, trailing: 0))
+                Text("Or Vertical Alignment")
+                Text("Top").listRowInsets(EdgeInsets(top: -20, leading: 40, bottom: 0, trailing: 0))
+                Text("Bottom").listRowInsets(EdgeInsets(top: 20, leading: 40, bottom: 0, trailing: 0))
             }
+            
         }
     }
 }
