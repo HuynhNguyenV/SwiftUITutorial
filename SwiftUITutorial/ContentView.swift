@@ -12,24 +12,34 @@ struct ContentView: View {
 
     var body: some View {
         Form {
-            Section {
-                Text("This is a Form").font(.title)
+            Section(header: Text("Seciton Header Text")) {
                 Text("You Can put any content in here")
                 Text("The cells with grow to fit the content")
-                Text("Remember, it's just views inside of views")
             }
             
-            Section {
-                Text("Limitations").font(.title)
+            Section(header: SectionTextAndImage(name: "People", image: "person.2.square.stack.fill")) {
                 Text("There are build-in margins thar are difficult to get around. Take s look at the color below so you can see where the margins are:")
-                Color.green
             }
             
-            Section {
-                Text("Summary").font(.title)
+            Section(header: Text(""), footer: Text("Total: $5000.00").bold()) {
                 Text("Pretty much what you see here is what you get.")
             }
         }
+    }
+}
+
+struct SectionTextAndImage: View {
+    var name: String
+    var image: String
+    
+    var body: some View {
+        HStack {
+            Image(systemName: image).padding(.trailing)
+            Text(name)
+        }
+        .padding()
+        .font(.title)
+        .foregroundColor(.red)
     }
 }
 
