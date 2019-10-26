@@ -9,30 +9,39 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var isOn = true
+    @State private var textFieldData = "This is a text field"
 
     var body: some View {
         Form {
-            Section(header: Text("Seciton Header Text").foregroundColor(.gray).font(.title).bold()) {
-                Text("You Can put any content in here")
-                Color.pink
-                Text("You Can put any content in here")
-                Color.pink.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            Section(header: SectionHeader(name: "Controls in a Form")) {
+                Text("This will give you an idea of how different controls are rendered in a From")
             }
-            
-            Section(header: SectionTextAndImage(name: "People", image: "person.2.square.stack.fill")) {
-                Text("There are build-in margins thar")
+            Section {
+                Button(action: {}) {Text("Button")}
+                Toggle(isOn: $isOn) {Text("Toggle")}
+                Stepper(onIncrement: {}, onDecrement: {}) {
+                    Text("Stepper")
+                }
+                TextField("", text: $textFieldData).textFieldStyle(RoundedBorderTextFieldStyle())
+                Image(systemName: "leaf.arrow.circlepath").font(.title)
+                Circle()
+                Text("Notice shapes are centered ☝􏰀")
+                
             }
-            
-            Section(header: Text("Row Inset Uses").font(.title)) {
-                Text("Other possible uses could be for indenting")
-                Text("Indent Level 1").listRowInsets(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 0))
-                Text("Indent Level 2").listRowInsets(EdgeInsets(top: 0, leading: 80, bottom: 0, trailing: 0))
-                Text("Or Vertical Alignment")
-                Text("Top").listRowInsets(EdgeInsets(top: -20, leading: 40, bottom: 0, trailing: 0))
-                Text("Bottom").listRowInsets(EdgeInsets(top: 20, leading: 40, bottom: 0, trailing: 0))
-            }
-            
         }
+    }
+}
+
+struct SectionHeader: View {
+    var name: String
+    
+    var body: some View {
+        Text(name)
+            
+            .font(.largeTitle)
+            .foregroundColor(.gray)
     }
 }
 
